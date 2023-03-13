@@ -54,7 +54,7 @@
         var email_id = document.myform.mail.value;
         var submitt = document.myform.submit.value;
         var mark_test = /^[0-9]{2}$/;
-        var address_test = /^[a-zA-Z ]{5}$/;
+        var address_test = /^[a-zA-Z0-9\s.,-]+$/;
 
         if (candidate_name == "" || date_birth == "" || gender == "" || qualification == "" || mark_scored == "" || grade == "" || address_candidate == "" || email_id == "" || contact_num == "") {
             alert("NO FIELDS SHOULD BE EMPTY");
@@ -78,8 +78,6 @@
             alert("SUCCESSFULLY REGISTERED");
             display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, address_candidate, contact_num, email_id,tamil,english,malayalam,hindi,telegu);
             var dob = new Date(date_birth);
-            console.log(Date.now());
-            console.log(dob.getTime());
             var dif = Date.now() - dob.getTime();
             var daydiff = (dif / 31536000000).toFixed(0);
             document.write("age is:" + daydiff + "<br>");
