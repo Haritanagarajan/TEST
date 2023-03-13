@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+</head>
+<style>
+    body {
+
+        background: linear-gradient(to right, #cbb4d4, #20002c);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+
+    input {
+        padding: 15px 20px;
+    }
+
+    .styleform {
+        padding: 40px 620px 30px;
+        color: azure;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    h3 {
+        text-align: center;
+        color: white;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    label {
+        padding-bottom: 30px;
+        padding-top: 10px;
+    }
+</style>
+<script>
+    function validate() {
+        var candidate_name = document.myform.cname.value;
+        var date_birth = document.myform.dob.value;
+        var gender = document.myform.gen.value;
+        var qualification = document.myform.qual.value.checked;
+        var mark_scored = document.myform.mark.value;
+        var grade = document.myform.select.value;
+        var language = document.myform.lang.value.checked;
+        var address_candidate = document.myform.address.value;
+        var contact_num = document.myform.telnum.value;
+        var email_id = document.myform.mail.value;
+        var submitt = document.myform.submit.value;
+        var mark_test = /^[0-9]{2}$/;
+        var address_test = /^[a-zA-Z]{5}$/;
+
+        if (candidate_name == "" || date_birth == "" || gender == "" || qualification == "" || mark_scored == "" || grade == "" || language == "" || address_candidate == "" || email_id == "" || contact_num == "") {
+            alert("NO FIELDS SHOULD BE EMPTY");
+            return false;
+        }
+        else if (candidate_name == "") {
+            alert("please enter the candidate name");
+            return false;
+
+        }
+        else if (!mark_test.test(mark_scored)) {
+            alert("please enter the proper mark format");
+            return false;
+        }
+        else if (!address_test.test(address_candidate)) {
+            alert("enter the correct address format");
+            return false;
+
+        }
+        else {
+            alert("SUCCESSFULLY REGISTERED");
+            display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, language, address_candidate, contact_num, email_id);
+            var dob = new Date(date_birth);
+            var dif = Date.now() - dob.getTime();
+            var daydiff = (dif / 31536000000).toFixed(0);
+            document.write("age is:" + daydiff + "<br>");
+        }
+
+        function display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, language, address_candidate, contact_num, email_id) {
+            document.write("NAME:" + candidate_name + "<br><br>");
+            document.write("DATE OF BIRTH:" + date_birth + "<br><br>");
+            document.write("GENDER:" + gender + "<br><br>");
+            document.write("QUALIFICATION:" + qualification + "<br><br>");
+            document.write("MARKSCORED:" + mark_scored + "<br><br>");
+            document.write("GRADE:" + grade + "<br><br>");
+            document.write("LANGUAGE:" + language + "<br><br>");
+            document.write("ADDRESS:" + address_candidate + "<br><br>");
+            document.write("CONTACT:" + contact_num + "<br><br>");
+            document.write("EMAIL ID:" + email_id + "<br><br>");
+
+        }
+    }
+</script>
+
+<body>
+    <h3>PERSONAL DETAILS</h3>
+
+    <form class="styleform" name="myform" action="">
+        <label>CANDIDATE NAME</label><br><br>
+        <input type="text" placeholder="name" name="cname"><br><br>
+        <label>DATE OF BIRTH</label><br><br>
+        <input type="date" placeholder="date of birth" name="dob"><br><br>
+        <label>GENDER</label><br><br>
+        MALE<input type="radio" placeholder="gender" name="gen" value="male"><br><br>
+        FEMALE<input type="radio" placeholder="gender" name="gen" value="female"><br><br>
+        <label>QUALIFICATION</label><br><br>
+        DIPLOMA<input type="radio" placeholder="qualification" name="qual" value="diploma"><br><br>
+        GRADUATE<input type="radio" placeholder="qualification" name="qual" value="graduate"><br><br>
+        POST GRADUATE<input type="radio" placeholder="qualification" name="qual" value="postgraduate"><br><br>
+        PROFESSIONAL<input type="radio" placeholder="qualification" name="qual" value="professional"><br><br>
+        <label>MARK SCORED</label><br><br>
+        <input type="text" placeholder="mark scored" name="mark"><br><br>
+        <label>GRADE</label><br><br>
+        <select name="select"><br><br>
+            <optgroup>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="C+">C+</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </optgroup>
+        </select><br><br>
+        <label>LANGUAGES</label><br><br>
+        TAMIL<input type="checkbox" name="lang" placeholder="languages known" value="tamil"><br>
+        ENGLISH<input type="checkbox" name="lang" placeholder="languages known" value="english"><br>
+        MALAYALAM <input type="checkbox" name="lang" placeholder="languages known" value="malayalam"><br>
+        HINDI<input type="checkbox" name="lang" placeholder="languages known" value="hindi"><br>
+        TELEGU<input type="checkbox" name="lang" placeholder="languages known" value="telegu"><br><br>
+        <label>ADDRESS</label><br><br>
+        <input type="textarea" name="address" placeholder="current address"><br><br>
+        <label>CONTACT NUMBER</label><br>
+        <input type="tel" name="telnum" placeholder="phone number" pattern="[0-9]{10}"><br><br>
+        <label>MAIL ID</label><br><br>
+        <input type="email" name="mail" placeholder="email address"><br><br>
+        <button type="button" name="submit" value="sumbit" onclick="return validate()">SUBMIT</button>
+
+    </form>
+
+</body>
+
+</html>
