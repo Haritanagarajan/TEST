@@ -41,18 +41,22 @@
         var candidate_name = document.myform.cname.value;
         var date_birth = document.myform.dob.value;
         var gender = document.myform.gen.value;
-        var qualification = document.myform.qual.value.checked;
+        var qualification = document.myform.qual.value;
         var mark_scored = document.myform.mark.value;
         var grade = document.myform.select.value;
-        var language = document.myform.lang.value.checked;
+        var tamil=document.getElementById("messageCheckbox1").checked;
+        var english=document.getElementById("messageCheckbox2").checked;
+        var malayalam=document.getElementById("messageCheckbox3").checked;
+        var hindi=document.getElementById("messageCheckbox4").checked;
+        var telegu=document.getElementById("messageCheckbox5").checked;
         var address_candidate = document.myform.address.value;
         var contact_num = document.myform.telnum.value;
         var email_id = document.myform.mail.value;
         var submitt = document.myform.submit.value;
         var mark_test = /^[0-9]{2}$/;
-        var address_test = /^[a-zA-Z]{5}$/;
+        var address_test = /^[a-zA-Z ]{5}$/;
 
-        if (candidate_name == "" || date_birth == "" || gender == "" || qualification == "" || mark_scored == "" || grade == "" || language == "" || address_candidate == "" || email_id == "" || contact_num == "") {
+        if (candidate_name == "" || date_birth == "" || gender == "" || qualification == "" || mark_scored == "" || grade == "" || address_candidate == "" || email_id == "" || contact_num == "") {
             alert("NO FIELDS SHOULD BE EMPTY");
             return false;
         }
@@ -72,24 +76,43 @@
         }
         else {
             alert("SUCCESSFULLY REGISTERED");
-            display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, language, address_candidate, contact_num, email_id);
+            display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, address_candidate, contact_num, email_id,tamil,english,malayalam,hindi,telegu);
             var dob = new Date(date_birth);
+            console.log(Date.now());
+            console.log(dob.getTime());
             var dif = Date.now() - dob.getTime();
             var daydiff = (dif / 31536000000).toFixed(0);
             document.write("age is:" + daydiff + "<br>");
         }
 
-        function display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade, language, address_candidate, contact_num, email_id) {
+        function display_details(candidate_name, date_birth, gender, qualification, mark_scored, grade,  address_candidate, contact_num, email_id,tamil,english,malayalam,hindi,telegu)
+         {
             document.write("NAME:" + candidate_name + "<br><br>");
             document.write("DATE OF BIRTH:" + date_birth + "<br><br>");
             document.write("GENDER:" + gender + "<br><br>");
             document.write("QUALIFICATION:" + qualification + "<br><br>");
             document.write("MARKSCORED:" + mark_scored + "<br><br>");
             document.write("GRADE:" + grade + "<br><br>");
-            document.write("LANGUAGE:" + language + "<br><br>");
             document.write("ADDRESS:" + address_candidate + "<br><br>");
             document.write("CONTACT:" + contact_num + "<br><br>");
             document.write("EMAIL ID:" + email_id + "<br><br>");
+            document.write("LANGUAGES KNOWN ARE:" +"<br><br>");
+
+            if(tamil){
+                document.write("tamil"+"<br>");
+            }
+            if(english){
+                document.write("english"+"<br>");
+            }
+            if(malayalam){
+                document.write("malayalam"+"<br>");
+            }
+            if(hindi){
+                document.write("hindi"+"<br>");
+            }
+            if(telegu){
+                document.write("telegu"+"<br>");
+            }
 
         }
     }
@@ -127,11 +150,11 @@
             </optgroup>
         </select><br><br>
         <label>LANGUAGES</label><br><br>
-        TAMIL<input type="checkbox" name="lang" placeholder="languages known" value="tamil"><br>
-        ENGLISH<input type="checkbox" name="lang" placeholder="languages known" value="english"><br>
-        MALAYALAM <input type="checkbox" name="lang" placeholder="languages known" value="malayalam"><br>
-        HINDI<input type="checkbox" name="lang" placeholder="languages known" value="hindi"><br>
-        TELEGU<input type="checkbox" name="lang" placeholder="languages known" value="telegu"><br><br>
+        TAMIL<input type="checkbox" id="messageCheckbox1" name="lang" placeholder="languages known" value="tamil"><br>
+        ENGLISH<input type="checkbox" id="messageCheckbox2" name="lang" placeholder="languages known" value="english"><br>
+        MALAYALAM <input type="checkbox" id="messageCheckbox3" name="lang" placeholder="languages known" value="malayalam"><br>
+        HINDI<input type="checkbox" id="messageCheckbox4" name="lang" placeholder="languages known" value="hindi"><br>
+        TELEGU<input type="checkbox" id="messageCheckbox5" name="lang" placeholder="languages known" value="telegu"><br><br>
         <label>ADDRESS</label><br><br>
         <input type="textarea" name="address" placeholder="current address"><br><br>
         <label>CONTACT NUMBER</label><br>
