@@ -22,7 +22,7 @@
             }
 
             disp() {
-                console.log("Product details are:" + ("product code:" + a.product_code +"  " +"product name:  " + a.product_name +"  " + "price : " +" "+ a.price +"  "+ "stock : " + a.stock));
+                console.log("Product details are:" + ("product code:" + a.product_code + "  " + "product name:  " + a.product_name + "  " + "price : " + " " + a.price + "  " + "stock : " + a.stock));
             }
         }
         class Activity extends Product {
@@ -36,24 +36,30 @@
             }
             disp() {
                 super.disp();
-                console.log("Activity details are:" + ("customer name:" +"  "+ a.customer_name +" "+ " product code: " +"  "+" " +a.productcode + "  "+"quantity sold :"+ +a.quantity_sold + "total amount  " +"  "+ a.total_amnt));
+                console.log("Activity details are:" + ("customer name:" + "  " + a.customer_name + " " + " product code: " + "  " + " " + a.productcode + "  " + "quantity sold :" + +a.quantity_sold));
             }
-            sales(productcode, quantity_sold, stock, total_amnt,price) {
-                this.total_amnt = this.quantity_sold * this.price;
-                console.log("total amount is:" + a.total_amnt);
-                if (this.quantity_sold>this.stock) {
-                    console.log("The available stock is:" +" "+this.stock);
-                    return temp;
+            sales(productcode, quantity_sold, stock, total_amnt, price) {
+
+                var temp = 0;
+                temp = this.stock - this.quantity_sold;
+
+                if (this.stock == 0) {
+                    console.log("outofstock");
                 }
-                else if (this.quantity_sold<this.stock) {
-                    console.log("The stock is available price is:" + (+"  "+this.total_amnt));
+                else if (temp <= 0) {
+                    console.log("we dont have enough stock the available stock is:" + this.stock);
+                    this.stock = 0;
                 }
                 else {
-                    console.log("invalid message");
+                    this.total_amnt = this.price * this.quantity_sold;
+                    console.log("welcome back again");
+                    console.log("bill is:" + this.total_amnt);
                 }
             }
         }
-        var a = new Activity(1100, "Biscuts", 100, 50, "Nithin", 1100, 20);
+
+
+        var a = new Activity(1100, "Biscuts", 100, 50, "Nithin", 1100, 60);
         a.disp();
         a.sales(this.productcode, this.quantity_sold, this.stock);
     </script>
