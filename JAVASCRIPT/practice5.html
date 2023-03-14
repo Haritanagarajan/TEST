@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <style>
+     BODY{
+        background-color: pink;
+     }
+        form{
+            
+            position:absolute;
+            border-radius:25px;
+            width:30%;
+            height: 280px;
+            text-align: center;
+            top:200px;
+          margin-left:450px;
+        }
+        label{
+          font-size: larger;
+          font-weight: bold;
+        }
+        
+
+        
+    </style>
+    <script>
+        function validate(){
+    var name=document.register.un.value;   
+    var pass=document.register.pw.value;
+    var confirm=document.register.cpw.value
+    
+        var ncheck = /^[A-Za-z' ']+$/;
+        var pwcheck = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+
+        if (name == '') {
+            alert('Please enter your name');
+        }
+        else if (!ncheck.test(name)) {
+            alert(' Enter valid user name');
+        }
+        else if (pass == '') {
+            alert('Please enter password');
+        }
+        else if (!pwcheck.test(pass)) {
+            alert('Enter valid password');
+        }
+        else if (pass != confirm) {
+            alert('Password not Matched');
+        }
+        else if (pass.length < 8) {
+            alert('Enter atleast 8 characters');
+        }
+        else if (pass.length > 15) {
+            alert('Enter within 15 characters');
+        }
+        else {
+            alert('Thanks for login!!!');
+            display(name,pass);
+
+          
+        }
+    }
+
+function display(name, pass) {
+    document.write("<h1>Registration Details:</h1>");
+    document.write("<p><strong>Name:</strong> " + name + "</p>");
+    document.write("<p><strong>password:</strong> " + pass + "</p>");
+   
+}
+    </script>
+</head>
+<body>
+   
+</head>
+
+<body>
+    
+    <form action="" name="register" method="post" onsubmit="validate()">
+        <fieldset style="border-radius:10px;">
+            <legend style="text-align: center; font-size: xx-large; font-weight: bolder;color:brown">Validation Form</legend>
+            <label>User Name :</label>
+            <input type="text" name="un" placeholder=" enter username">
+            <br><br>
+            <label>Password :</label>
+            <input type="password" name="pw" placeholder="enter  password">
+            <br><br>
+            <label> Confirm Password :</label>
+            <input type="password" name="cpw" placeholder="enter confirm password">
+            <br><br>
+            <input type="submit"  value="Sign In">
+            <input type="reset" value="Cancel" class="button">
+        </fieldset>
+    </form>
+</body>
+</html>
