@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Product {
+            constructor(product_code, product_name, price, stock) {
+                this.product_code = product_code;
+                this.product_name = product_name;
+                this.price = price;
+                this.stock = stock;
+            }
+            get stockvalue() {
+                return `Available stock is:${this.stock}`;
+            }
+
+            disp() {
+                console.log("Product details are:" + (a.product_code + "  " + a.product_name + "  " + a.price + "  " + a.stock));
+            }
+        }
+        class Activity extends Product {
+            constructor(product_code, product_name, price, stock, customer_name, productcode, quantity_sold, total_amnt) {
+                super(product_code, product_name, price, stock);
+                this.customer_name = customer_name;
+                this.productcode = productcode;
+                this.quantity_sold = quantity_sold;
+                this.total_amnt = total_amnt;
+
+            }
+            disp() {
+                super.disp();
+                console.log("Activity details are:" + (a.customer_name + "  " + a.productcode + "  " + a.quantity_sold + "  " + a.total_amnt));
+            }
+            sales(productcode, quantity_sold,stock) {
+                temp=0;
+                if (quantity_sold > stock) {
+                    console.log("The quantity is higher than stock"+(temp+=stock-quantity_sold));
+                    return temp;
+                }
+                else if (quantity_sold < stock) {
+                    console.log("The stock quantity is less and available quantity is"+(+stock));
+                }
+                else {
+                    console.log("stock is not present");
+                }
+            }
+        }
+        var a = new Activity(1100, "Biscuts", "100Rs", 10, "Nithin", 1100, 20, "100rs");
+        a.disp();
+        a.sales(this.productcode, this.quantity_sold,this.stock);
+    </script>
+</body>
+
+</html>
