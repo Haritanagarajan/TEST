@@ -22,7 +22,7 @@
             }
 
             disp() {
-                console.log("Product details are:" + (a.product_code + "  " + a.product_name + "  " + a.price + "  " + a.stock));
+                console.log("Product details are:" + ("product code:" + a.product_code +"  " +"product name:  " + a.product_name +"  " + "price : " +" "+ a.price +"  "+ "stock : " + a.stock));
             }
         }
         class Activity extends Product {
@@ -31,30 +31,31 @@
                 this.customer_name = customer_name;
                 this.productcode = productcode;
                 this.quantity_sold = quantity_sold;
-                this.total_amnt = total_amnt;
+                this.total_amnt = 0;
 
             }
             disp() {
                 super.disp();
-                console.log("Activity details are:" + (a.customer_name + "  " + a.productcode + "  " + a.quantity_sold + "  " + a.total_amnt));
+                console.log("Activity details are:" + ("customer name:" +"  "+ a.customer_name +" "+ " product code: " +"  "+" " +a.productcode + "  "+"quantity sold :"+ +a.quantity_sold + "total amount  " +"  "+ a.total_amnt));
             }
-            sales(productcode, quantity_sold,stock) {
-                temp=0;
-                if (quantity_sold > stock) {
-                    console.log("The quantity is higher than stock"+(temp+=stock-quantity_sold));
+            sales(productcode, quantity_sold, stock, total_amnt,price) {
+                this.total_amnt = this.quantity_sold * this.price;
+                console.log("total amount is:" + a.total_amnt);
+                if (this.quantity_sold>this.stock) {
+                    console.log("The available stock is:" +" "+this.stock);
                     return temp;
                 }
-                else if (quantity_sold < stock) {
-                    console.log("The stock quantity is less and available quantity is"+(+stock));
+                else if (this.quantity_sold<this.stock) {
+                    console.log("The stock is available price is:" + (+"  "+this.total_amnt));
                 }
                 else {
-                    console.log("stock is not present");
+                    console.log("invalid message");
                 }
             }
         }
-        var a = new Activity(1100, "Biscuts", "100Rs", 10, "Nithin", 1100, 20, "100rs");
+        var a = new Activity(1100, "Biscuts", 100, 50, "Nithin", 1100, 20);
         a.disp();
-        a.sales(this.productcode, this.quantity_sold,this.stock);
+        a.sales(this.productcode, this.quantity_sold, this.stock);
     </script>
 </body>
 
